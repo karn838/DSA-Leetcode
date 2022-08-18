@@ -1,0 +1,33 @@
+package Lec40;
+
+import java.util.Stack;
+
+public class stock_span {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[]arr = {91,11,13,15,38,42,37};
+		span_cal(arr);
+	}
+  public static void span_cal(int[]arr) {
+	  int[]span = new int[arr.length];
+	  Stack<Integer> st = new Stack<>();
+	  for(int i=0;i<arr.length;i++) {
+		  while(!st.isEmpty()&& arr[i]>arr[st.peek()])
+		  {
+			  st.pop();
+		  }
+		  if(st.isEmpty()) {
+			  span[i]=i+1;
+		  }
+		  else {
+			  span[i]=i-st.peek();
+		  }
+		  st.push(i);
+	  }
+	  for(int i=0;i<span.length;i++)
+	  {
+		  System.out.println(arr[i]+" "+" "+span[i]);
+	  }
+  }
+}
